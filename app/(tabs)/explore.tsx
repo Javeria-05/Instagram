@@ -1,112 +1,238 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Fonts } from '@/constants/theme';
+import {
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  Image,
+  Dimensions,
+} from 'react-native';
 
-export default function TabTwoScreen() {
+import Ionicons from '@expo/vector-icons/Ionicons';
+
+export default function ExploreScreen() {
+
+  const screenWidth = Dimensions.get('window').width;
+
+  const categories = [
+    'For you',
+    'Rawalpindi',
+    'Luxury fashion',
+    'Travel',
+  ];
+
+  const posts = [
+    {
+      image: 'https://i.pinimg.com/736x/c3/44/f9/c344f9d3fe6b117d89842c779635a2d7.jpg',
+      views: '391K',
+    },
+    {
+      image: 'https://i.pinimg.com/736x/46/b4/65/46b465c1193a9d44f4480ea4c6df0bdb.jpg',
+      views: '550K',
+    },
+    {
+      image: 'https://i.pinimg.com/736x/f3/6c/8f/f36c8f5324d9d49978931b7fa3bc29b0.jpg',
+      views: '560K',
+    },
+    {
+      image: 'https://i.pinimg.com/736x/0e/7d/de/0e7dde7e3e9a3b5ec029c411febb4d5b.jpg',
+      views: '455K',
+    },
+    {
+      image: 'https://i.pinimg.com/736x/e5/b2/4e/e5b24ea57c45162fa1f3af61386f8161.jpg',
+      views: '620K',
+    },
+    {
+      image: 'https://i.pinimg.com/736x/c0/4d/15/c04d154ac51e59768be3d866a6d227a8.jpg',
+      views: '671K',
+    },
+    {
+      image: 'https://i.pinimg.com/736x/0d/66/67/0d6667ffc3e73668767c3dc758b7468a.jpg',
+      views: '750K',
+    },
+    {
+      image: 'https://i.pinimg.com/1200x/8c/1d/9f/8c1d9f1d5f95be59204c800ffd9df2f9.jpg',
+      views: '850K',
+    },
+    {
+      image: 'https://i.pinimg.com/736x/f7/6d/05/f76d053b5f0690d484ceb656fd7d36c2.jpg',
+      views: '920K',
+    },
+  ];
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText
-          type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
-          Explore
-        </ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful{' '}
-          <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <SafeAreaView
+      edges={['top']}
+      style={{
+        flex: 1,
+        backgroundColor: 'black',
+      }}>
+
+      <ScrollView
+        style={{
+          flex: 1,
+          backgroundColor: 'black',
+        }}>
+
+        {/* Responsive Wrapper */}
+        <View
+  style={{
+    width: '100%',
+    maxWidth: 430,
+    alignSelf: 'center',
+    backgroundColor: 'black',
+  }}>
+
+          {/* Search Bar */}
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingHorizontal: 10,
+              marginTop: 10,
+            }}>
+
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: '#262626',
+                borderRadius: 25,
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 12,
+                height: 45,
+              }}>
+
+              <Ionicons
+                name="search"
+                size={18}
+                color="gray"
+              />
+
+              <TextInput
+                placeholder="Search with Meta AI"
+                placeholderTextColor="gray"
+                style={{
+                  color: 'white',
+                  marginLeft: 8,
+                  flex: 1,
+                }}
+              />
+
+            </View>
+
+            <Ionicons
+              name="options-outline"
+              size={22}
+              color="white"
+              style={{ marginLeft: 10 }}
+            />
+
+          </View>
+
+          {/* Categories */}
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{
+              marginTop: 15,
+              paddingLeft: 10,
+            }}>
+
+            {categories.map((item, index) => (
+              <View
+                key={index}
+                style={{
+                  backgroundColor:
+                    index === 0 ? '#262626' : 'transparent',
+                  borderWidth: 1,
+                  borderColor: '#333',
+                  borderRadius: 20,
+                  paddingHorizontal: 16,
+                  paddingVertical: 8,
+                  marginRight: 10,
+                }}>
+
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: 13,
+                  }}>
+                  {item}
+                </Text>
+
+              </View>
+            ))}
+
+          </ScrollView>
+
+          {/* Grid */}
+          <View
+            style={{
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              marginTop: 15,
+            }}>
+
+            {posts.map((item, index) => (
+              <View
+                key={index}
+                style={{
+                  width: '33.3%',
+                  height: 160,
+                }}>
+
+                <Image
+                  source={{
+                    uri: item.image,
+                  }}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderWidth: 1,
+                    borderColor: 'black',
+                  }}
+                />
+
+                {item.views !== '' && (
+                  <View
+                    style={{
+                      position: 'absolute',
+                      bottom: 8,
+                      left: 8,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                    }}>
+
+                    <Ionicons
+                      name="eye-outline"
+                      size={14}
+                      color="white"
+                    />
+
+                    <Text
+                      style={{
+                        color: 'white',
+                        marginLeft: 4,
+                        fontWeight: 'bold',
+                        fontSize: 12,
+                      }}>
+                      {item.views}
+                    </Text>
+
+                  </View>
+                )}
+
+              </View>
+            ))}
+
+          </View>
+
+        </View>
+
+      </ScrollView>
+
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-});

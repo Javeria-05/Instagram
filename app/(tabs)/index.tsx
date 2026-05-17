@@ -1,98 +1,284 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  Dimensions,
+} from 'react-native';
+
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  const screenWidth = Dimensions.get('window').width;
+
+  const stories = [
+    {
+      name: 'Your Story',
+      image: 'https://i.pinimg.com/736x/88/2e/1e/882e1ef841d1dc3ad785bf78aff21829.jpg',
+    },
+    {
+      name: 'Maryam',
+      image: 'https://i.pinimg.com/736x/8a/e7/8e/8ae78efc6d16548cc4972c5d485349e0.jpg',
+    },
+    {
+      name: 'Ayesha',
+      image: 'https://i.pinimg.com/736x/9d/d9/33/9dd9338f46a2a30bb67715f1b77a093e.jpg',
+    },
+    {
+      name: 'Friends',
+      image: 'https://i.pinimg.com/1200x/df/79/34/df793495b85c5b692ddea3dfe17f0cb9.jpg',
+    },
+  ];
+
+  return (
+    <SafeAreaView
+      edges={['top']}
+      style={{
+        flex: 1,
+        backgroundColor: 'black',
+      }}>
+
+      <ScrollView
+        style={{
+          flex: 1,
+          backgroundColor: 'black',
+        }}>
+
+        {/* Responsive Wrapper */}
+        <View
+          style={{
+            width: '100%',
+            maxWidth: 430,
+            alignSelf: 'center',
+            backgroundColor: 'black',
+          }}>
+      
+          {/* Header */}
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              paddingHorizontal: 15,
+              paddingTop: 20,
+            }}>
+        
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 28,
+                fontWeight: 'bold',
+              }}>
+              Instagram
+            </Text>
+
+            <View
+              style={{
+                flexDirection: 'row',
+                gap: 15,
+              }}>
+
+              <Ionicons
+                name="add-circle-outline"
+                size={28}
+                color="white"
+              />
+
+              <Ionicons
+                name="heart-outline"
+                size={28}
+                color="white"
+              />
+
+              <Ionicons
+                name="chatbubble-outline"
+                size={28}
+                color="white"
+              />
+
+            </View>
+
+          </View>
+
+          {/* Stories */}
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{
+              marginTop: 20,
+              paddingLeft: 15,
+            }}>
+        
+            {stories.map((item, index) => (
+              <View
+                key={index}
+                style={{
+                  alignItems: 'center',
+                  marginRight: 15,
+                  position: 'relative',
+                }}>
+            
+                <Image
+                  source={{
+                    uri: item.image,
+                  }}
+                  style={{
+                    width: 70,
+                    height: 70,
+                    borderRadius: 35,
+                    borderWidth: 2,
+                    borderColor: '#ff4d94',
+                  }}
+                />
+
+                {/* Plus Button */}
+                {index === 0 && (
+                  <View
+                    style={{
+                      position: 'absolute',
+                      right: 0,
+                      top: 45,
+                      backgroundColor: '#0095f6',
+                      width: 22,
+                      height: 22,
+                      borderRadius: 11,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderWidth: 2,
+                      borderColor: 'black',
+                    }}>
+
+                    <Ionicons
+                      name="add"
+                      size={14}
+                      color="white"
+                    />
+
+                  </View>
+                )}
+
+                <Text
+                  style={{
+                    color: 'white',
+                    marginTop: 5,
+                  }}>
+                  {item.name}
+                </Text>
+
+              </View>
+            ))}
+
+          </ScrollView>
+
+          {/* Post */}
+          <View
+            style={{
+              marginTop: 20,
+            }}>
+        
+            {/* User Row */}
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingHorizontal: 15,
+                marginBottom: 10,
+              }}>
+
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
+          
+                <Image
+                  source={{
+                    uri: 'https://i.pinimg.com/736x/e3/42/aa/e342aa7b7e11912f3a9cf0ea0e9a20f4.jpg',
+                  }}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 20,
+                  }}
+                />
+
+                <Text
+                  style={{
+                    color: 'white',
+                    marginLeft: 10,
+                    fontWeight: 'bold',
+                  }}>
+                  Almas
+                </Text>
+
+              </View>
+
+              <Ionicons
+                name="ellipsis-vertical"
+                size={20}
+                color="white"
+              />
+
+            </View>
+
+            {/* Main Post */}
+            <Image
+              source={{
+                uri: 'https://i.pinimg.com/736x/7b/fd/de/7bfdde37ca1920199f593398d6dacfe5.jpg',
+              }}
+              style={{
+                width: '100%',
+                height: 420,
+              }}
+            />
+
+            {/* Actions */}
+            <View
+              style={{
+                flexDirection: 'row',
+                gap: 15,
+                padding: 15,
+              }}>
+          
+              <Ionicons
+                name="heart-outline"
+                size={28}
+                color="white"
+              />
+
+              <Ionicons
+                name="chatbubble-outline"
+                size={28}
+                color="white"
+              />
+
+              <Ionicons
+                name="paper-plane-outline"
+                size={28}
+                color="white"
+              />
+
+            </View>
+
+            <Text
+              style={{
+                color: 'white',
+                paddingHorizontal: 15,
+                paddingBottom: 20,
+              }}>
+              Beautiful aesthetic moments ✨
+            </Text>
+
+          </View>
+
+        </View>
+
+      </ScrollView>
+
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
