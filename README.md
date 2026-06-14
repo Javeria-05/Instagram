@@ -1,50 +1,82 @@
-# Welcome to your Expo app 👋
+# 📸 Instagram Clone
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> A modern social media app clone inspired by Instagram — built with React Native (Expo) and Firebase.
 
-## Get started
+This project is a fully functional **Instagram-like mobile application** that includes authentication, posts, stories, likes, comments, and a beautiful user interface.
 
-1. Install dependencies
+🔗 **Live Demo:** *Coming soon*
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## ✨ Features
 
-   ```bash
-   npx expo start
-   ```
+| Feature | Description |
+|---------|-------------|
+| 🔐 Authentication | Signup / Login with Firebase Auth |
+| 📱 User Profile | View and edit profile information |
+| 📷 Upload Posts | Share photos with captions |
+| ❤️ Like Posts | Interact with other users' content |
+| 💬 Comments | Add comments on posts |
+| 📖 Stories | Upload and view stories (24h expiry) |
+| 🔍 Search Users | Find and follow other users |
+| 👥 Follow System | Follow/unfollow users |
+| 📰 Feed | See posts from followed users |
+| 🎨 Modern UI | Clean Instagram-like interface |
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠️ Tech Stack
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+| Technology | Purpose |
+|------------|---------|
+| React Native (Expo) | Mobile frontend framework |
+| Firebase Authentication | User login/signup |
+| Firebase Firestore | Database for posts, users, comments |
+| Firebase Storage | Image uploads (posts & stories) |
+| TypeScript | Type-safe code |
+| JavaScript | Core logic |
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 📁 Project Structure
+Instagram/
+├── app/ # Navigation and main screens
+├── components/ # Reusable UI components
+├── constants/ # App theme and colors
+├── hooks/ # Custom React hooks
+├── assets/images/ # App images and icons
+├── scripts/ # Utility scripts
+├── app.json # Expo configuration
+├── package.json # Dependencies
+└── tsconfig.json # TypeScript config
+
+
+---
+
+## 🚀 Installation
+
+Follow these steps to run the project locally.
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+- Expo Go app on your phone (Android/iOS)
+
+### Setup
 
 ```bash
-npm run reset-project
-```
+# 1. Clone the repository
+git clone https://github.com/Javeria-05/Instagram.git
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+# 2. Navigate to project folder
+cd Instagram
 
-## Learn more
+# 3. Install dependencies
+npm install
 
-To learn more about developing your project with Expo, look at the following resources:
+# 4. Start the Expo server
+npx expo start
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+👩‍💻 Developer
+Javeria Irum
